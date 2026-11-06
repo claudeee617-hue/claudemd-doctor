@@ -80,6 +80,53 @@ Exit code is `1` when there are errors or the score is under `--fail-under`, so 
 
 It also lists your top-level directories, formatter configs and CI workflows. The result is short on purpose: you add the 2-3 things only you know.
 
+## Before / After
+
+A typical `CLAUDE.md` that has rotted:
+
+```md
+# My App
+
+Always write clean, high quality code and follow best practices.
+Be careful and try to do a good job on every change.
+
+Main logic lives in `src\utils\helpers.ts` and `src/legacy/api.ts`.
+Deploy with `npm run deploy` when finished.
+```
+
+```text
+$ claudemd-doctor lint .
+CLAUDE.md  (7 lines)
+     L7  error    stale-command       `deploy` is not a script in package.json.
+     L3  warning  vague-rule          "follow best practices" says nothing Claude doesn't already do. Replace it with a concrete, checkable rule.
+     L4  warning  vague-rule          "be careful" says nothing Claude doesn't already do. Replace it with a concrete, checkable rule.
+     L6  warning  stale-path          `src\utils\helpers.ts` does not exist in the repo. Update or remove it.
+     L6  warning  stale-path          `src/legacy/api.ts` does not exist in the repo. Update or remove it.
+
+Score: 57/100
+```
+
+After fixing what the linter found:
+
+```md
+# My App
+
+Build with `npm run build`, test with `npm test`.
+
+Main logic lives in `src/index.ts`.
+Run `npm test` before every commit.
+```
+
+```text
+$ claudemd-doctor lint .
+CLAUDE.md  (6 lines)
+  No issues found.
+
+Score: 100/100
+```
+
+(Demo repo: a `package.json` with `build` and `test` scripts, and `src/index.ts` present.)
+
 ## Lint rules
 
 | Rule | Severity | What it catches |
