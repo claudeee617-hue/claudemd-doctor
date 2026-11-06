@@ -73,11 +73,12 @@ class Report:
 
 
 def _is_path_like(token: str) -> bool:
+    token = token.replace("\\", "/")  # Windows-style separators count as paths too
     if not token or " " in token or len(token) > 120:
         return False
     if token.startswith(("http://", "https://", "-", "/", "~", "$", "@")):
         return False
-    if any(ch in token for ch in "*<>{}$|=()[]!?,;:\\"):
+    if any(ch in token for ch in "*<>{}$|=()[]!?,;:"):
         return False
     if token.endswith("/") and "/" in token.rstrip("/"):
         return True
@@ -148,7 +149,8 @@ def lint_text(text: str, info: RepoInfo, path: Path | None = None) -> Report:
 
         if not in_fence:
             for tok in re.findall(r"`([^`\n]+)`", raw):
-                if _is_path_like(tok) and not (info.root / tok.rstrip("/")).exists():
+                norm = tok.replace("\\", "/")
+                if _is_path_like(tok) and not (info.root / norm.rstrip("/")).exists():
                     issues.append(Issue(WARN, "stale-path", f"`{tok}` does not exist in the "
                                         "repo. Update or remove it.", idx))
 

@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here.
 
+## [0.1.1] - 2026-11-06
+
+### Fixed
+- `stale-path`: Windows-style paths (`src\utils\helpers.ts`) are now normalized to `/` before
+  the check, so backslash paths are caught like forward-slash ones.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added

@@ -100,6 +100,12 @@ class LinterTests(unittest.TestCase):
     def test_existing_path_ok(self):
         self.assertNotIn("stale-path", self.rules("# X\nSee `src/index.ts`. `pnpm run build`\n"))
 
+    def test_stale_path_backslash(self):
+        self.assertIn("stale-path", self.rules("# X\nSee `src\\missing.ts`. `pnpm run build`\n"))
+
+    def test_existing_backslash_path_ok(self):
+        self.assertNotIn("stale-path", self.rules("# X\nSee `src\\index.ts`. `pnpm run build`\n"))
+
     def test_stale_npm_script(self):
         self.assertIn("stale-command", self.rules("# X\nRun `npm run deploy`\n"))
 
