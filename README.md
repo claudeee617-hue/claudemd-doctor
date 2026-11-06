@@ -4,7 +4,7 @@
 
 A zero-dependency CLI that **generates** a lean `CLAUDE.md` from your repo and **lints** an existing one for the mistakes that make Claude ignore it: stale paths, dead commands, vague rules, bloat and leaked secrets.
 
-![CI](https://github.com/claudeee617-hue/my-project/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/claudeee617-hue/claudemd-doctor/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
@@ -42,7 +42,7 @@ It checks your `CLAUDE.md` against the **actual repo**, so a rule that points at
 ## Install
 
 ```bash
-pip install git+https://github.com/claudeee617-hue/my-project
+pip install git+https://github.com/claudeee617-hue/claudemd-doctor
 ```
 
 ## Usage
@@ -97,7 +97,7 @@ Score starts at 100: each error costs 15, warning 7, info 2.
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: claudeee617-hue/my-project@main
+- uses: claudeee617-hue/claudemd-doctor@main
   with:
     fail-under: 80
 ```

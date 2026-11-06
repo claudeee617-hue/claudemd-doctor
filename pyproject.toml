@@ -22,3 +22,7 @@ claudemd-doctor = "claudemd_doctor.cli:main"
 
 [tool.setuptools]
 packages = ["claudemd_doctor"]
+
+[project.urls]
+Homepage = "https://github.com/claudeee617-hue/claudemd-doctor"
+Issues = "https://github.com/claudeee617-hue/claudemd-doctor/issues"
