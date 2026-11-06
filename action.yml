@@ -1,0 +1,22 @@
+name: "CLAUDE.md Doctor"
+description: "Lint your CLAUDE.md in CI: catches stale paths, dead commands, vague rules and leaked secrets."
+branding:
+  icon: check-circle
+  color: orange
+inputs:
+  path:
+    description: "Repository root to check"
+    default: "."
+  fail-under:
+    description: "Fail the job if the score is below this number"
+    default: "80"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: |
+        pip install "${{ github.action_path }}"
+        claudemd-doctor lint "${{ inputs.path }}" --fail-under "${{ inputs.fail-under }}"

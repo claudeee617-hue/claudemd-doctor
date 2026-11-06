@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "claudemd-doctor"
+version = "0.1.0"
+description = "Generate and lint CLAUDE.md files so Claude Code actually follows them."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["claude", "claude-code", "CLAUDE.md", "linter", "ai", "developer-tools"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.scripts]
+claudemd-doctor = "claudemd_doctor.cli:main"
+
+[tool.setuptools]
+packages = ["claudemd_doctor"]
