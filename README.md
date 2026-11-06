@@ -5,6 +5,7 @@
 A zero-dependency CLI that **generates** a lean `CLAUDE.md` from your repo and **lints** an existing one for the mistakes that make Claude ignore it: stale paths, dead commands, vague rules, bloat and leaked secrets.
 
 ![CI](https://github.com/claudeee617-hue/claudemd-doctor/actions/workflows/ci.yml/badge.svg)
+[![PyPI](https://img.shields.io/pypi/v/claudemd-doctor)](https://pypi.org/project/claudemd-doctor/)
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
@@ -42,6 +43,10 @@ It checks your `CLAUDE.md` against the **actual repo**, so a rule that points at
 ## Install
 
 ```bash
+pip install claudemd-doctor
+# or, isolated:
+pipx install claudemd-doctor
+# or the latest from GitHub:
 pip install git+https://github.com/claudeee617-hue/claudemd-doctor
 ```
 
