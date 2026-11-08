@@ -17,6 +17,10 @@ runs:
       with:
         python-version: "3.12"
     - shell: bash
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+        INPUT_PATH: ${{ inputs.path }}
+        INPUT_FAIL_UNDER: ${{ inputs.fail-under }}
       run: |
-        pip install "${{ github.action_path }}"
-        claudemd-doctor lint "${{ inputs.path }}" --fail-under "${{ inputs.fail-under }}"
+        pip install "$ACTION_PATH"
+        claudemd-doctor lint "$INPUT_PATH" --fail-under "$INPUT_FAIL_UNDER"
